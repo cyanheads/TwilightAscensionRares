@@ -2,6 +2,19 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [0.1.1] - 2026-01-28
+
+### Added
+- Apache License 2.0 file
+- Comprehensive GitHub README with installation instructions, feature overview, and full rare rotation reference
+- GitHub and Buy Me a Coffee links to CurseForge description
+
+### Changed
+- Set CurseForge project ID to 1447415 in TOC file
+- Fixed addon name consistency ("Twilight Ascension Rares" instead of "Twilight Ascension") in CurseForge description
+- Added `/twilight` alias to command documentation in CurseForge description
+- Added Patch 12 API compatibility note to development documentation
+
 ## [0.1.0] - 2026-01-28
 
 ### Added
