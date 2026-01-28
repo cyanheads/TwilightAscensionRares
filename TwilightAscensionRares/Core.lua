@@ -121,7 +121,7 @@ end
 -- Share rare to chat with timing info
 function ns.Core:ShareToChat(rare, channel, isCurrent, minutesUntil)
     local mapLink = self:GetMapPinLink(rare)
-    local wayCmd = string.format("/way #%d %.1f %.1f", ns.MAP_ID, rare.x, rare.y)
+    local wayCmd = string.format("/way %.1f %.1f", rare.x, rare.y)
 
     local message
     if isCurrent then
@@ -129,6 +129,9 @@ function ns.Core:ShareToChat(rare, channel, isCurrent, minutesUntil)
     else
         message = string.format("%s spawns in %dm! %s %s", rare.name, minutesUntil, mapLink, wayCmd)
     end
+
+    -- Also set TomTom waypoint for the shared rare
+    self:SetWaypoint(rare)
 
     if channel == "RAID" then
         if IsInRaid() then
