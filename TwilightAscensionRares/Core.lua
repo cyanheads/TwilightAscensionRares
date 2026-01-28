@@ -56,9 +56,10 @@ function ns.Core:GetUpcomingRares(count)
         local rare, index = self:GetRare(currentIndex + i)
         local minutesUntil
         if i == 0 then
-            minutesUntil = minutesRemaining
+            minutesUntil = minutesRemaining  -- Time left in current spawn window
         else
-            minutesUntil = minutesRemaining + (i * ns.SPAWN_INTERVAL_MINUTES)
+            -- Next rare spawns when current ends, each subsequent +10min
+            minutesUntil = minutesRemaining + ((i - 1) * ns.SPAWN_INTERVAL_MINUTES)
         end
 
         table.insert(upcoming, {
@@ -109,29 +110,59 @@ end
 
 -- Create a clickable map pin link for chat
 function ns.Core:GetMapPinLink(rare)
-    -- Format: |cffffff00|Hworldmap:mapID:x:y|h[Location]|h|r
-    local x = rare.x / 100
-    local y = rare.y / 100
-    return string.format("|cffffff00|Hworldmap:%d:%.4f:%.4f|h[%.1f, %.1f]|h|r",
+    -- Coordinates must be integers (percentage * 100), e.g. 41.8% -> 4180
+    local x = math.floor(rare.x * 100)
+    local y = math.floor(rare.y * 100)
+    return string.format(
+        "|cffffff00|Hworldmap:%d:%d:%d|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a %.1f, %.1f]|h|r",
         ns.MAP_ID, x, y, rare.x, rare.y)
 end
 
--- Share rare to chat
-function ns.Core:ShareToChat(rare, channel)
+-- Share rare to chat with timing info
+function ns.Core:ShareToChat(rare, channel, isCurrent, minutesUntil)
     local mapLink = self:GetMapPinLink(rare)
-    local message = string.format("%s is up! %s", rare.name, mapLink)
+    local wayCmd = string.format("/way #%d %.1f %.1f", ns.MAP_ID, rare.x, rare.y)
+
+    -- DEBUG: test with plain text first to see if SendChatMessage works at all
+    local message
+    if isCurrent then
+        message = string.format("%s is up NOW at %.1f, %.1f! %s", rare.name, rare.x, rare.y, wayCmd)
+    else
+        message = string.format("%s spawns in %dm at %.1f, %.1f! %s", rare.name, minutesUntil, rare.x, rare.y, wayCmd)
+    end
+
+    -- Debug: show what we're trying to send
+    print("|cffaaaaaa[DEBUG] Attempting to send:|r " .. message)
+    print("|cffaaaaaa[DEBUG] Channel:|r " .. channel .. " | InRaid: " .. tostring(IsInRaid()) .. " | InGroup: " .. tostring(IsInGroup()))
 
     if channel == "RAID" then
         if IsInRaid() then
             SendChatMessage(message, "RAID")
+            print("|cff00ff00[Twilight Ascension Rares]|r Shared to Raid!")
         elseif IsInGroup() then
             SendChatMessage(message, "PARTY")
+            print("|cff00ff00[Twilight Ascension Rares]|r Shared to Party!")
         else
             print("|cffff0000[Twilight Ascension Rares]|r You're not in a group!")
         end
     elseif channel == "GENERAL" then
-        -- Channel 1 is typically General
-        SendChatMessage(message, "CHANNEL", nil, 1)
+        -- Find General channel dynamically (it's not always channel 1)
+        local generalId = nil
+        local channels = {GetChannelList()}
+        for i = 1, #channels, 3 do
+            local id, name = channels[i], channels[i+1]
+            if name == "General" then
+                generalId = id
+                break
+            end
+        end
+
+        if generalId then
+            SendChatMessage(message, "CHANNEL", nil, generalId)
+            print("|cff00ff00[Twilight Ascension Rares]|r Shared to General (/" .. generalId .. ")!")
+        else
+            print("|cffff0000[Twilight Ascension Rares]|r Not in General chat!")
+        end
     end
 end
 
