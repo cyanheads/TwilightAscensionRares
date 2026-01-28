@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor/IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# WoW SavedVariables (generated at runtime)
+SavedVariables/
+
+# Packager output
+.release/
+.pkgmeta
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+settings.json
+settings.local.json

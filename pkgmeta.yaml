@@ -1,0 +1,11 @@
+package-as: TwilightAscensionRares
+
+ignore:
+  - README.md
+  - LICENSE
+  - .git
+  - .github
+  - docs
+
+move-folders:
+  TwilightAscensionRares: TwilightAscensionRares
