@@ -5,7 +5,7 @@
 **Track the Twilight Highlands rare spawn rotation for the Two Minutes to Midnight achievement**
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![WoW Version](https://img.shields.io/badge/WoW-11.1.0-yellow.svg)](https://worldofwarcraft.blizzard.com/)
+[![WoW Version](https://img.shields.io/badge/WoW-12.0.0-yellow.svg)](https://worldofwarcraft.blizzard.com/)
 [![CurseForge](https://img.shields.io/badge/CurseForge-Download-orange.svg)](https://legacy.curseforge.com/wow/addons/twilightascensionrares)
 
 ![Preview](assets/preview.png)

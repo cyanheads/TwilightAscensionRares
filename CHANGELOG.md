@@ -2,6 +2,15 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [0.1.2] - 2026-01-28
+
+### Changed
+- Updated Interface version to 120000 for Patch 12.0.0 compatibility
+- Updated WoW version badge to 12.0.0 in README
+
+### Removed
+- Deleted duplicate claude.md file (consolidated to CLAUDE.md)
+
 ## [0.1.1] - 2026-01-28
 
 ### Added
