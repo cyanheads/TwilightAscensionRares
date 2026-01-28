@@ -10,8 +10,7 @@ The **Twilight's Blade** cult is summoning rares across the Twilight Highlands e
 
 - **Live Schedule** — Shows the current rare and next 3 upcoming spawns with countdown timers
 - **One-Click Waypoints** — TomTom integration (or manual `/way` output if not installed)
-- **Raid/Chat Sharing** — Share the current rare with a clickable map pin to General or Raid chat
-- **Bonus Rare Alert** — Notifies when Voice of the Eclipse can spawn (top of every hour)
+- **Raid/Chat Sharing** — Share any rare with timing info and clickable map pin to General or Raid chat
 - **Themed UI** — Void-purple design that fits the Twilight aesthetic
 - **Auto-Show** — Appears automatically when you enter Twilight Highlands
 
@@ -31,7 +30,7 @@ The **Twilight's Blade** cult is summoning rares across the Twilight Highlands e
 
 ### Tips
 
-- **Click any rare name** in the list to set a waypoint for that specific spawn
+- Use the **W/G/R buttons** on each row to set waypoints or share to General/Raid chat
 - The schedule uses **realm time** — works automatically across all regions
 - Window position is saved between sessions
 - Drag the window to reposition it anywhere on screen

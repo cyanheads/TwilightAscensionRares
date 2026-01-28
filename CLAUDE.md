@@ -12,14 +12,15 @@ Helps players complete the **Two Minutes to Midnight** achievement by:
 ## Project Structure
 
 ```
-TwilightAscension/          # The actual addon (copy to WoW AddOns folder)
-├── TwilightAscension.toc   # Addon manifest
-├── Data.lua                # Rare data, coordinates, rotation order
-├── Core.lua                # Schedule calculation, waypoints, chat sharing
-└── UI.lua                  # Themed UI frame and buttons
+TwilightAscensionRares/          # The actual addon (copy to WoW AddOns folder)
+├── TwilightAscensionRares.toc   # Addon manifest
+├── Data.lua                     # Rare data, coordinates, rotation order
+├── Core.lua                     # Schedule calculation, waypoints, chat sharing
+└── UI.lua                       # Themed UI frame and buttons
 
-assets/                     # Project assets (not part of addon)
+assets/                          # Project assets (not part of addon)
 ├── CurseForgeDescription.md
+├── Screenshot1.png
 ├── TwilightAscensionRaresIcon.png
 └── TwilightAscensionRaresIcon_400x400.png
 
@@ -49,7 +50,7 @@ Patch 12.0.0 (Midnight pre-patch, January 20, 2026) introduces major addon API c
 
 ## CurseForge
 
-- **Project**: https://www.curseforge.com/wow/addons/twilight-ascension (update URL once published)
+- **Project**: https://www.curseforge.com/wow/addons/twilightascensionrares
 - **Categories**: Map & Minimap (main), Achievements (secondary)
 
 ## Updating the Description

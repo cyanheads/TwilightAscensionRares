@@ -2,6 +2,18 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [1.0.2] - 2026-01-28
+
+### Fixed
+- Removed zone ID prefix from `/way` commands in chat sharing (TomTom uses current zone context)
+
+### Changed
+- Sharing a rare to chat now also sets a TomTom waypoint automatically
+- Updated CurseForge description to reflect current UI (W/G/R inline buttons, removed bonus rare reference)
+- Updated CurseForge URLs from legacy domain to current domain in README
+- Fixed project structure and naming references in CLAUDE.md
+- Added screenshot to project assets and README preview
+
 ## [1.0.1] - 2026-01-28
 
 ### Fixed

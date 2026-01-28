@@ -6,9 +6,9 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![WoW Version](https://img.shields.io/badge/WoW-12.0.0-yellow.svg)](https://worldofwarcraft.blizzard.com/)
-[![CurseForge](https://img.shields.io/badge/CurseForge-Download-orange.svg)](https://legacy.curseforge.com/wow/addons/twilightascensionrares)
+[![CurseForge](https://img.shields.io/badge/CurseForge-Download-orange.svg)](https://www.curseforge.com/wow/addons/twilightascensionrares)
 
-![Preview](assets/preview.png)
+![Preview](assets/Screenshot1.png)
 
 </div>
 
@@ -38,7 +38,7 @@ Search for **Twilight Ascension Rares** in your addon manager.
 
 ### Manual
 
-1. Download the latest release from [Releases](https://github.com/cyanheads/TwilightAscensionRares/releases) or [CurseForge](https://legacy.curseforge.com/wow/addons/twilightascensionrares)
+1. Download the latest release from [Releases](https://github.com/cyanheads/TwilightAscensionRares/releases) or [CurseForge](https://www.curseforge.com/wow/addons/twilightascensionrares)
 2. Extract `TwilightAscensionRares` folder to your `World of Warcraft/_retail_/Interface/AddOns/` directory
 3. Restart WoW or `/reload`
 
