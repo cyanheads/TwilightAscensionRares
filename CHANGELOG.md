@@ -2,6 +2,15 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [1.0.1] - 2026-01-28
+
+### Fixed
+- Replaced manual map pin hyperlink formatting with WoW's native `C_Map.SetUserWaypoint` / `GetUserWaypointHyperlink` API for reliable clickable map pins in chat
+- Removed leftover debug print statements from chat sharing
+
+### Changed
+- Chat share messages now use native map pin links instead of manually constructed hyperlinks
+
 ## [1.0.0] - 2026-01-28
 
 ### Added
