@@ -1,4 +1,4 @@
-## Two Minutes to Midnight
+## Twilight Ascension Rares
 
 The **Twilight's Blade** cult is summoning rares across the Twilight Highlands every 10 minutes — and you need to kill all 18 for the [Two Minutes to Midnight](https://www.wowhead.com/achievement=42300/two-minutes-to-midnight) achievement before the Midnight launch.
 
