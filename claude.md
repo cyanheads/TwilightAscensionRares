@@ -36,6 +36,10 @@ docs/
 - **Anchor**: Cycle anchored at 02:50 realm time (minute 170 of day)
 - **Interface version**: 110100 (patch 11.1.0)
 
+### Patch 12 API Note
+
+Patch 12.0.0 (Midnight pre-patch, January 20, 2026) introduces major addon API changes via the "Secret Values" system that restricts combat data access. **This addon is unaffected** — it uses only scheduling/utility APIs (`GetGameTime()`, UI frames, TomTom integration) rather than combat-related functions. See [docs/CreatingWoWAddons.md](docs/CreatingWoWAddons.md) for full details on Patch 12 changes if extending this addon's functionality.
+
 ## Slash Commands
 
 - `/ta` or `/twilight` — Show help
