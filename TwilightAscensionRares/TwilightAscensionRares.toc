@@ -1,0 +1,12 @@
+## Interface: 110100
+## Title: Twilight Ascension Rares
+## Notes: Track rare spawns for the Twilight Ascension achievement
+## Author: Casey
+## Version: 1.0.0
+## SavedVariables: TwilightAscensionRaresDB
+## X-Website: https://github.com/cyanheads/TwilightAscensionRares
+## X-Curse-Project-ID: REPLACE_WITH_YOUR_PROJECT_ID
+
+Data.lua
+Core.lua
+UI.lua
