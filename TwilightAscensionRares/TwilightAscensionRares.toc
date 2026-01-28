@@ -2,6 +2,8 @@
 ## Title: Twilight Ascension Rares
 ## Notes: Track rare spawns for the Twilight Ascension achievement
 ## Author: Casey
+## IconTexture: Interface\AddOns\TwilightAscensionRares\icon
+## Category: Map
 ## Version: 1.0.0
 ## SavedVariables: TwilightAscensionRaresDB
 ## X-Website: https://github.com/cyanheads/TwilightAscensionRares
