@@ -108,14 +108,14 @@ function ns.Core:SetWaypoint(rare)
     end
 end
 
--- Create a clickable map pin link for chat
+-- Set a user waypoint and get its hyperlink (WoW generates the correct format)
 function ns.Core:GetMapPinLink(rare)
-    -- Coordinates must be integers (percentage * 100), e.g. 41.8% -> 4180
-    local x = math.floor(rare.x * 100)
-    local y = math.floor(rare.y * 100)
-    return string.format(
-        "|cffffff00|Hworldmap:%d:%d:%d|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a %.1f, %.1f]|h|r",
-        ns.MAP_ID, x, y, rare.x, rare.y)
+    local pos = CreateVector2D(rare.x / 100, rare.y / 100)
+    local mapPoint = UiMapPoint.CreateFromVector2D(ns.MAP_ID, pos)
+    C_Map.SetUserWaypoint(mapPoint)
+    local link = C_Map.GetUserWaypointHyperlink()
+    C_Map.ClearUserWaypoint()
+    return link
 end
 
 -- Share rare to chat with timing info
@@ -123,17 +123,12 @@ function ns.Core:ShareToChat(rare, channel, isCurrent, minutesUntil)
     local mapLink = self:GetMapPinLink(rare)
     local wayCmd = string.format("/way #%d %.1f %.1f", ns.MAP_ID, rare.x, rare.y)
 
-    -- DEBUG: test with plain text first to see if SendChatMessage works at all
     local message
     if isCurrent then
-        message = string.format("%s is up NOW at %.1f, %.1f! %s", rare.name, rare.x, rare.y, wayCmd)
+        message = string.format("%s is up NOW! %s %s", rare.name, mapLink, wayCmd)
     else
-        message = string.format("%s spawns in %dm at %.1f, %.1f! %s", rare.name, minutesUntil, rare.x, rare.y, wayCmd)
+        message = string.format("%s spawns in %dm! %s %s", rare.name, minutesUntil, mapLink, wayCmd)
     end
-
-    -- Debug: show what we're trying to send
-    print("|cffaaaaaa[DEBUG] Attempting to send:|r " .. message)
-    print("|cffaaaaaa[DEBUG] Channel:|r " .. channel .. " | InRaid: " .. tostring(IsInRaid()) .. " | InGroup: " .. tostring(IsInGroup()))
 
     if channel == "RAID" then
         if IsInRaid() then
