@@ -2,6 +2,29 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [1.0.0] - 2026-01-28
+
+### Added
+- Inline action buttons (W/G/R) on each rare row for waypoints and chat sharing
+- Addon icon (icon.tga) and `IconTexture` / `Category` fields in TOC
+- Chat messages now include timing info and `/way` command for easy copying
+- Waypoint icon in clickable map pin links
+- Dynamic General channel lookup instead of hardcoded channel 1
+- Auto-hide UI when leaving Twilight Highlands
+
+### Changed
+- Redesigned UI layout: compact 320x135 frame with per-row action buttons replacing bottom button bar
+- Current rare shown as muted "Now"; next rare highlighted green as primary focus
+- Glow frame parented to main frame (moves correctly when dragged)
+- Fixed off-by-one error in upcoming rare spawn time calculation
+- Map pin coordinates use proper integer format
+- Uses `UIPanelButtonTemplate` for reliable button input handling
+
+### Removed
+- Bottom button bar (Waypoint / Share /1 / Share Raid)
+- Bonus rare (Voice of the Eclipse) indicator
+- Row click-to-waypoint and hover tooltips (replaced by inline buttons)
+
 ## [0.1.2] - 2026-01-28
 
 ### Changed
