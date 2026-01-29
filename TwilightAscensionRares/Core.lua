@@ -37,8 +37,8 @@ end
 -- Check if bonus rare (Voice of the Eclipse) can spawn this hour
 function ns.Core:IsBonusRareTime()
     local hour, minute = GetGameTime()
-    -- Bonus rare spawns at top of every hour (minute 0-9)
-    return minute < 10
+    -- Bonus rare spawns at top of every hour (minute 0-4)
+    return minute < 5
 end
 
 -- Get rare data by index (wraps around)
@@ -58,7 +58,7 @@ function ns.Core:GetUpcomingRares(count)
         if i == 0 then
             minutesUntil = minutesRemaining  -- Time left in current spawn window
         else
-            -- Next rare spawns when current ends, each subsequent +10min
+            -- Next rare spawns when current ends, each subsequent +5min
             minutesUntil = minutesRemaining + ((i - 1) * ns.SPAWN_INTERVAL_MINUTES)
         end
 
