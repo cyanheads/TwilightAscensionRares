@@ -72,7 +72,7 @@ All 18 rares spawn in a fixed order on a 90-minute cycle:
 |---|------|----------|
 | 1 | Redeye the Skullchewer | 65.2, 52.2 |
 | 2 | T'aavihan the Unbound | 57.6, 75.6 |
-| 3 | Ray of Putrescence | 71.2, 29.9 |
+| 3 | Ray of Putrescence | 71.0, 30.6 |
 | 4 | Ix the Bloodfallen | 46.7, 25.2 |
 | 5 | Commander Ix'vaarha | 45.2, 48.8 |
 | 6 | Sharfadi, Bulwark of the Night | 41.8, 16.5 |
