@@ -2,6 +2,13 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [1.1.0] - 2026-01-28
+
+### Changed
+- Updated spawn interval from 10 minutes to 5 minutes (90-minute full cycle) to match the Feb 28 respawn hotfix
+- Updated bonus rare window check from 10 minutes to 5 minutes
+- Bumped addon version to 1.1.0
+
 ## [1.0.2] - 2026-01-28
 
 ### Fixed

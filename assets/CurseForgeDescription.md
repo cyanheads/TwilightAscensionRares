@@ -1,10 +1,12 @@
 ## Twilight Ascension Rares
 
-The **Twilight's Blade** cult is summoning rares across the Twilight Highlands every 10 minutes — and you need to kill all 18 for the [Two Minutes to Midnight](https://www.wowhead.com/achievement=42300/two-minutes-to-midnight) achievement before the Midnight launch.
+The **Twilight's Blade** cult is summoning rares across the Twilight Highlands every 5 minutes — and you need to kill all 18 for the [Two Minutes to Midnight](https://www.wowhead.com/achievement=42300/two-minutes-to-midnight) achievement before the Midnight launch.
 
 **Twilight Ascension Rares** removes the guesswork. See exactly which rare is up, what's coming next, and share locations with your group in one click.
 
 ---
+
+> **Note**: Updated for the 5-minute respawn hotfix on Feb 28
 
 ### Features
 
@@ -39,7 +41,7 @@ The **Twilight's Blade** cult is summoning rares across the Twilight Highlands e
 
 ### The Rotation
 
-All 18 rares spawn in a fixed order on a 3-hour cycle. The addon calculates your position in the cycle automatically based on your realm's clock.
+All 18 rares spawn in a fixed order on a 90-minute cycle. The addon calculates your position in the cycle automatically based on your realm's clock.
 
 ---
 
