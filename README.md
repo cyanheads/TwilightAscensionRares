@@ -8,7 +8,7 @@
 [![WoW Version](https://img.shields.io/badge/WoW-12.0.0-yellow.svg)](https://worldofwarcraft.blizzard.com/)
 [![CurseForge](https://img.shields.io/badge/CurseForge-Download-orange.svg)](https://www.curseforge.com/wow/addons/twilightascensionrares)
 
-![Preview](assets/Screenshot1.png)
+![Preview](assets/Screenshot2.png)
 
 </div>
 
