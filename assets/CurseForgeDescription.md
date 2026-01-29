@@ -4,6 +4,8 @@ The **Twilight's Blade** cult is summoning rares across the Twilight Highlands e
 
 **Twilight Ascension Rares** removes the guesswork. See exactly which rare is up, what's coming next, and share locations with your group in one click.
 
+![Screenshot](https://media.forgecdn.net/attachments/description/1447415/description_0ac445a4-ce4f-4d61-9e3b-b6656c77d300.png)
+
 ---
 
 > **Note**: Updated for the 5-minute respawn hotfix on Feb 28
