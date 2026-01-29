@@ -34,7 +34,7 @@ docs/
 - **Zone**: Twilight Highlands (Map ID 241)
 - **Schedule**: 18 rares, 5-minute rotation, 90-minute full cycle
 - **Time calculation**: Uses `GetGameTime()` (realm time) — works across all regions automatically
-- **Anchor**: Cycle anchored at 02:50 realm time (minute 170 of day)
+- **Anchor**: Region-specific — NA at 00:25 (minute 25), EU at 01:25 (minute 85). Uses `GetCurrentRegion()` to select.
 - **Interface version**: 120000 (patch 12.0.0)
 
 ### Patch 12 API Note

@@ -19,8 +19,8 @@ end
 function ns.Core:GetCurrentRare()
     local minuteOfDay = self:GetRealmMinutes()
 
-    -- Calculate position in 3-hour cycle
-    -- Anchor at 02:50 (minute 170) when Redeye spawns
+    -- Calculate position in 90-minute cycle
+    -- Anchor is region-specific (set in Data.lua)
     local minutesSinceAnchor = minuteOfDay - ns.CYCLE_ANCHOR_MINUTE
     if minutesSinceAnchor < 0 then
         minutesSinceAnchor = minutesSinceAnchor + 1440  -- Wrap around midnight
