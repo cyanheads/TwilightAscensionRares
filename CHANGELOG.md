@@ -2,6 +2,16 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [1.1.1] - 2026-01-28
+
+### Fixed
+- Corrected Ray of Putrescence coordinates from 71.2, 29.9 to 71.0, 30.6
+
+### Changed
+- Made cycle anchor region-specific (NA at 00:25, EU at 01:25) using `GetCurrentRegion()`
+- Updated TOC notes, author field, and version to 1.1.1
+- Added `*.zip` to .gitignore
+
 ## [1.1.0] - 2026-01-28
 
 ### Changed

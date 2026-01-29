@@ -1,10 +1,10 @@
 ## Interface: 120000
 ## Title: Twilight Ascension Rares
-## Notes: Track rare spawns for the Twilight Ascension achievement
-## Author: Casey
+## Notes: Twilight Ascension rare timer for the Two Minutes to Midnight achievement with schedule display, waypoints, and group sharing.
+## Author: cyanheads
 ## IconTexture: Interface\AddOns\TwilightAscensionRares\icon
 ## Category: Map
-## Version: 1.1.0
+## Version: 1.1.1
 ## SavedVariables: TwilightAscensionRaresDB
 ## X-Website: https://github.com/cyanheads/TwilightAscensionRares
 ## X-Curse-Project-ID: 1447415

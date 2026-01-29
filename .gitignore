@@ -23,3 +23,5 @@ SavedVariables/
 
 settings.json
 settings.local.json
+
+*.zip
