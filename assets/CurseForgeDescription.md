@@ -12,7 +12,7 @@ The **Twilight's Blade** cult is summoning rares across the Twilight Highlands e
 
 ### Features
 
-*   **Live Schedule** — Shows the current rare and next 3 upcoming spawns with countdown timers
+*   **Live Schedule** — Shows the current rare and next 3 upcoming spawns with countdown timers, plus an expandable view of all 18 rares
 *   **One-Click Waypoints** — TomTom integration (or manual `/way` output if not installed)
 *   **Raid/Chat Sharing** — Share any rare with timing info and clickable map pin to General or Raid chat
 *   **Themed UI** — Void-purple design that fits the Twilight aesthetic
