@@ -8,7 +8,7 @@
 [![WoW Version](https://img.shields.io/badge/WoW-12.0.0-yellow.svg)](https://worldofwarcraft.blizzard.com/)
 [![CurseForge](https://img.shields.io/badge/CurseForge-Download-orange.svg)](https://www.curseforge.com/wow/addons/twilightascensionrares)
 
-![Preview](assets/Screenshot3.png)
+![Preview](assets/Screenshot5.png)
 
 </div>
 
@@ -18,7 +18,7 @@
 
 The **Twilight's Blade** cult is summoning rares across the Twilight Highlands every 5 minutes. Kill all 18 for the [Two Minutes to Midnight](https://www.wowhead.com/achievement=42300/two-minutes-to-midnight) achievement before the Midnight launch.
 
-**Twilight Ascension Rares** removes the guesswork. See exactly which rare is up, what's coming next, and share locations with your group in one click.
+**TwilightAscensionRares** removes the guesswork. See exactly which rare is up, what's coming next, and share locations with your group in one click.
 
 > **Note**: Updated for the 5-minute respawn hotfix on Feb 28
 

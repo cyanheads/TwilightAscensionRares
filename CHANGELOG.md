@@ -2,6 +2,17 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [1.1.3] - 2026-01-30
+
+### Changed
+- Renamed addon title to "TwilightAscensionRares" (no spaces) in TOC and UI title bar
+- Updated author field to "cyanheadsWoW" in TOC
+- Set UI title font size to 14 for consistency
+- Updated preview screenshot in README
+
+### Added
+- New screenshots (Screenshot5, Screenshot6)
+
 ## [1.1.2] - 2026-01-30
 
 ### Added
