@@ -49,7 +49,7 @@ end
 local function CreateMainFrame()
     -- Main frame (wider to accommodate inline buttons)
     local frame = CreateFrame("Frame", "TwilightAscensionRaresFrame", UIParent, "BackdropTemplate")
-    frame:SetSize(320, 135)
+    frame:SetSize(320, 152)
     frame:SetPoint("CENTER")
     frame:SetBackdrop({
         bgFile = "Interface\\Buttons\\WHITE8x8",
@@ -62,7 +62,7 @@ local function CreateMainFrame()
 
     -- Outer glow frame (parented to main frame so it moves with it)
     local glowFrame = CreateFrame("Frame", nil, frame, "BackdropTemplate")
-    glowFrame:SetSize(336, 151)
+    glowFrame:SetSize(336, 168)
     glowFrame:SetPoint("CENTER", frame, "CENTER", 0, 0)
     glowFrame:SetFrameLevel(frame:GetFrameLevel() - 1)
     glowFrame:SetBackdrop({
@@ -196,11 +196,151 @@ local function CreateMainFrame()
         frame.rareRows[i] = row
     end
 
-    -- Divider between current and upcoming rares
-    local currentDivider = frame:CreateTexture(nil, "ARTWORK")
-    currentDivider:SetSize(280, 1)
-    currentDivider:SetPoint("TOPLEFT", 20, listStartY - rowHeight - 1)
-    currentDivider:SetColorTexture(unpack(COLORS.divider))
+    -- Expand/Collapse divider
+    local REMAINING_COUNT = ns.TOTAL_RARES - DISPLAY_COUNT
+    local toggleY = listStartY - (DISPLAY_COUNT * (rowHeight + 1)) - 2
+    local toggleBtn = CreateFrame("Button", nil, frame)
+    toggleBtn:SetSize(300, 16)
+    toggleBtn:SetPoint("TOPLEFT", 10, toggleY)
+    toggleBtn:EnableMouse(true)
+
+    -- Left line
+    local leftLine = toggleBtn:CreateTexture(nil, "ARTWORK")
+    leftLine:SetSize(90, 1)
+    leftLine:SetPoint("LEFT", 0, 0)
+    leftLine:SetColorTexture(unpack(COLORS.divider))
+
+    -- Label
+    toggleBtn.label = toggleBtn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    toggleBtn.label:SetPoint("CENTER", 0, 0)
+    toggleBtn.label:SetText("|cff6b5b7fExpand|r")
+
+    -- Right line
+    local rightLine = toggleBtn:CreateTexture(nil, "ARTWORK")
+    rightLine:SetSize(90, 1)
+    rightLine:SetPoint("RIGHT", 0, 0)
+    rightLine:SetColorTexture(unpack(COLORS.divider))
+
+    toggleBtn:SetScript("OnEnter", function(self)
+        self.label:SetText("|cffcc99ffExpand|r")
+    end)
+    toggleBtn:SetScript("OnLeave", function(self)
+        if not ns.UI.allRaresExpanded then
+            self.label:SetText("|cff6b5b7fExpand|r")
+        else
+            self.label:SetText("|cff6b5b7fCollapse|r")
+        end
+    end)
+
+    frame.toggleBtn = toggleBtn
+
+    -- Expanded rows container (hidden by default)
+    local expandContainer = CreateFrame("Frame", nil, frame)
+    local expandStartY = toggleY - 18
+    expandContainer:SetPoint("TOPLEFT", 10, expandStartY)
+    expandContainer:SetSize(300, REMAINING_COUNT * (rowHeight + 1))
+    expandContainer:Hide()
+
+    frame.expandContainer = expandContainer
+    frame.allRareRows = {}
+
+    for i = 1, REMAINING_COUNT do
+        local row = CreateFrame("Frame", nil, expandContainer)
+        row:SetSize(300, rowHeight)
+        row:SetPoint("TOPLEFT", 0, -((i - 1) * (rowHeight + 1)))
+
+        row.highlight = row:CreateTexture(nil, "BACKGROUND")
+        row.highlight:SetAllPoints()
+        row.highlight:SetColorTexture(0.5, 0.3, 0.7, 0)
+
+        row.status = row:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+        row.status:SetPoint("LEFT", 2, 0)
+        row.status:SetWidth(12)
+
+        row.name = row:CreateFontString(nil, "OVERLAY", "SystemFont_Med1")
+        row.name:SetPoint("LEFT", 16, 0)
+        row.name:SetWidth(150)
+        row.name:SetJustifyH("LEFT")
+
+        row.time = row:CreateFontString(nil, "OVERLAY", "NumberFontNormalSmall")
+        row.time:SetPoint("LEFT", 168, 0)
+        row.time:SetWidth(55)
+        row.time:SetJustifyH("LEFT")
+
+        local btnRaid = CreateMiniButton(row, "R", "Share to Raid/Party")
+        btnRaid:SetPoint("RIGHT", -2, 0)
+        row.btnRaid = btnRaid
+
+        local btnGeneral = CreateMiniButton(row, "G", "Share to General")
+        btnGeneral:SetPoint("RIGHT", btnRaid, "LEFT", -2, 0)
+        row.btnGeneral = btnGeneral
+
+        local btnWay = CreateMiniButton(row, "W", "Set Waypoint")
+        btnWay:SetPoint("RIGHT", btnGeneral, "LEFT", -2, 0)
+        row.btnWay = btnWay
+
+        -- This row maps to upcoming index DISPLAY_COUNT + i
+        row.upcomingOffset = DISPLAY_COUNT + i
+
+        row.btnWay:SetScript("OnClick", function()
+            local upcoming = ns.Core:GetUpcomingRares(ns.TOTAL_RARES)
+            local data = upcoming[row.upcomingOffset]
+            if data and data.rare then
+                ns.Core:SetWaypoint(data.rare)
+            end
+        end)
+
+        row.btnGeneral:SetScript("OnClick", function()
+            local upcoming = ns.Core:GetUpcomingRares(ns.TOTAL_RARES)
+            local data = upcoming[row.upcomingOffset]
+            if data and data.rare then
+                ns.Core:ShareToChat(data.rare, "GENERAL", data.isCurrent, data.minutesUntil)
+            end
+        end)
+
+        row.btnRaid:SetScript("OnClick", function()
+            local upcoming = ns.Core:GetUpcomingRares(ns.TOTAL_RARES)
+            local data = upcoming[row.upcomingOffset]
+            if data and data.rare then
+                ns.Core:ShareToChat(data.rare, "RAID", data.isCurrent, data.minutesUntil)
+            end
+        end)
+
+        row:EnableMouse(true)
+        row:SetScript("OnEnter", function(self)
+            self.highlight:SetColorTexture(0.5, 0.3, 0.7, 0.1)
+        end)
+        row:SetScript("OnLeave", function(self)
+            self.highlight:SetColorTexture(0.5, 0.3, 0.7, 0)
+        end)
+
+        frame.allRareRows[i] = row
+    end
+
+    -- Collapsed: fits the 4 rows + divider toggle
+    local COLLAPSED_HEIGHT = 152
+    local EXPANDED_HEIGHT = COLLAPSED_HEIGHT + (REMAINING_COUNT * (rowHeight + 1)) + 4
+
+    local function SetExpanded(expanded)
+        ns.UI.allRaresExpanded = expanded
+        if expanded then
+            toggleBtn.label:SetText("|cff6b5b7fCollapse|r")
+            expandContainer:Show()
+            frame:SetSize(320, EXPANDED_HEIGHT)
+            frame.glowFrame:SetSize(336, EXPANDED_HEIGHT + 16)
+        else
+            toggleBtn.label:SetText("|cff6b5b7fExpand|r")
+            expandContainer:Hide()
+            frame:SetSize(320, COLLAPSED_HEIGHT)
+            frame.glowFrame:SetSize(336, COLLAPSED_HEIGHT + 16)
+        end
+    end
+
+    toggleBtn:SetScript("OnClick", function()
+        SetExpanded(not ns.UI.allRaresExpanded)
+    end)
+
+    frame.SetExpanded = SetExpanded
 
     return frame
 end
@@ -235,6 +375,22 @@ local function UpdateDisplay()
                 row.time:SetText("+" .. data.minutesUntil .. "m")
             end
             row.name:SetText(data.rare.name)
+        end
+    end
+
+    -- Update expanded rows (remaining rares after the top 4)
+    if ns.UI.allRaresExpanded and frame.allRareRows then
+        local allUpcoming = ns.Core:GetUpcomingRares(ns.TOTAL_RARES)
+        for i = 1, ns.TOTAL_RARES - DISPLAY_COUNT do
+            local row = frame.allRareRows[i]
+            local data = allUpcoming[DISPLAY_COUNT + i]
+            if row and data then
+                row.status:SetText("|cff6b5b7f-|r")
+                row.name:SetTextColor(unpack(COLORS.upcomingRare))
+                row.time:SetTextColor(unpack(COLORS.timerUpcoming))
+                row.time:SetText("+" .. data.minutesUntil .. "m")
+                row.name:SetText(data.rare.name)
+            end
         end
     end
 end

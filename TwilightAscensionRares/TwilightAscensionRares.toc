@@ -4,7 +4,7 @@
 ## Author: cyanheads
 ## IconTexture: Interface\AddOns\TwilightAscensionRares\icon
 ## Category: Map
-## Version: 1.1.1
+## Version: 1.1.2
 ## SavedVariables: TwilightAscensionRaresDB
 ## X-Website: https://github.com/cyanheads/TwilightAscensionRares
 ## X-Curse-Project-ID: 1447415
