@@ -2,6 +2,17 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [1.1.2] - 2026-01-30
+
+### Added
+- Expandable view to show all 18 rares in the schedule (expand/collapse toggle below the top 4 rows)
+- New screenshots for expanded UI state
+
+### Changed
+- Increased main frame height to accommodate expand/collapse divider
+- Updated preview screenshot in README
+- Updated CurseForge description to mention expandable view
+
 ## [1.1.1] - 2026-01-28
 
 ### Fixed
