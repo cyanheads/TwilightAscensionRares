@@ -89,8 +89,10 @@ local function CreateMainFrame()
 
     -- Title with twilight styling
     local title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    local fontFile, _, fontFlags = title:GetFont()
+    title:SetFont(fontFile, 14, fontFlags)
     title:SetPoint("TOP", 0, -8)
-    title:SetText("|cffcc99ffTwilight|r |cff9966ffAscension|r")
+    title:SetText("|cffcc99ffTwilight|r|cff9966ffAscension|r|cffcc99ffRares|r")
 
     -- Subtle divider line under title
     local divider = frame:CreateTexture(nil, "ARTWORK")
