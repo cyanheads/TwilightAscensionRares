@@ -9,6 +9,30 @@ local floor = math.floor
 
 ns.Core = {}
 
+-- Achievement: Two Minutes to Midnight (ID 42300, 19 criteria)
+local ACHIEVEMENT_ID = 42300
+local ACHIEVEMENT_NUM_CRITERIA = 19
+
+-- Build lookup of which rares still need to be killed for the achievement
+-- Returns a table keyed by rare name -> true for incomplete criteria
+function ns.Core:RefreshAchievementProgress()
+    local needsKill = {}
+    for i = 1, ACHIEVEMENT_NUM_CRITERIA do
+        local criteriaString, _, completed = GetAchievementCriteriaInfo(ACHIEVEMENT_ID, i)
+        if criteriaString and not completed then
+            needsKill[criteriaString] = true
+        end
+    end
+    ns.achievementNeedsKill = needsKill
+end
+
+-- Open the achievement panel to Two Minutes to Midnight
+function ns.Core:OpenAchievement()
+    if OpenAchievementFrameToAchievement then
+        OpenAchievementFrameToAchievement(ACHIEVEMENT_ID)
+    end
+end
+
 -- Get current realm time as minutes since midnight
 function ns.Core:GetRealmMinutes()
     local hour, minute = GetGameTime()
@@ -125,7 +149,7 @@ function ns.Core:ShareToChat(rare, channel, isCurrent, minutesUntil)
 
     local message
     if isCurrent then
-        message = string.format("%s is up NOW! %s %s", rare.name, mapLink, wayCmd)
+        message = string.format("%s is spawning! %s %s", rare.name, mapLink, wayCmd)
     else
         message = string.format("%s spawns in %dm! %s %s", rare.name, minutesUntil, mapLink, wayCmd)
     end

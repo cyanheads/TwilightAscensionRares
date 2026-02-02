@@ -4,6 +4,33 @@ ns.UI = {}
 
 local DISPLAY_COUNT = 4  -- Current + next 3
 
+-- Achievement indicator helper: adds a clickable "!" to a row
+local function AddAchievementIndicator(row)
+    local btn = CreateFrame("Button", nil, row)
+    btn:SetSize(12, 16)
+    btn:SetPoint("LEFT", 2, 0)
+
+    btn.text = btn:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    btn.text:SetAllPoints()
+    btn.text:SetText("|cffffd100!|r")
+
+    btn:SetScript("OnClick", function()
+        ns.Core:OpenAchievement()
+    end)
+    btn:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_TOP")
+        GameTooltip:AddLine("Not yet defeated — click to view achievement", 1, 0.82, 0)
+        GameTooltip:Show()
+    end)
+    btn:SetScript("OnLeave", function()
+        GameTooltip:Hide()
+    end)
+
+    btn:Hide()
+    row.achieveBtn = btn
+    return btn
+end
+
 -- Color palette (Twilight/Void theme)
 local COLORS = {
     background = { 0.05, 0.03, 0.09, 0.92 },      -- Deep void purple
@@ -128,15 +155,13 @@ local function CreateMainFrame()
         row.highlight:SetAllPoints()
         row.highlight:SetColorTexture(0.5, 0.3, 0.7, 0)
 
-        -- Status indicator (> for next, - for others)
-        row.status = row:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-        row.status:SetPoint("LEFT", 2, 0)
-        row.status:SetWidth(12)
+        -- Achievement indicator (clickable !)
+        AddAchievementIndicator(row)
 
         -- Rare name
         row.name = row:CreateFontString(nil, "OVERLAY", "SystemFont_Med1")
         row.name:SetPoint("LEFT", 16, 0)
-        row.name:SetWidth(150)
+        row.name:SetWidth(138)
         row.name:SetJustifyH("LEFT")
 
         -- Time indicator
@@ -255,13 +280,11 @@ local function CreateMainFrame()
         row.highlight:SetAllPoints()
         row.highlight:SetColorTexture(0.5, 0.3, 0.7, 0)
 
-        row.status = row:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-        row.status:SetPoint("LEFT", 2, 0)
-        row.status:SetWidth(12)
+        AddAchievementIndicator(row)
 
         row.name = row:CreateFontString(nil, "OVERLAY", "SystemFont_Med1")
         row.name:SetPoint("LEFT", 16, 0)
-        row.name:SetWidth(150)
+        row.name:SetWidth(138)
         row.name:SetJustifyH("LEFT")
 
         row.time = row:CreateFontString(nil, "OVERLAY", "NumberFontNormalSmall")
@@ -359,24 +382,31 @@ local function UpdateDisplay()
         if row then
             if data.isCurrent then
                 -- Current rare - muted, it's already up
-                row.status:SetText("|cff6b5b7f-|r")
                 row.name:SetTextColor(unpack(COLORS.upcomingRare))
                 row.time:SetTextColor(unpack(COLORS.gold))
                 row.time:SetText("Now")
             elseif i == 2 then
                 -- Next rare - highlighted green, this is what we're waiting for
-                row.status:SetText("|cffffd100>|r")
                 row.name:SetTextColor(unpack(COLORS.currentRare))
                 row.time:SetTextColor(unpack(COLORS.timerActive))
                 row.time:SetText("in " .. data.minutesUntil .. "m")
             else
                 -- Further upcoming - muted purple
-                row.status:SetText("|cff6b5b7f-|r")
                 row.name:SetTextColor(unpack(COLORS.upcomingRare))
                 row.time:SetTextColor(unpack(COLORS.timerUpcoming))
                 row.time:SetText("+" .. data.minutesUntil .. "m")
             end
             row.name:SetText(data.rare.name)
+
+            -- Achievement indicator + name position
+            local needsKill = ns.achievementNeedsKill and ns.achievementNeedsKill[data.rare.name]
+            if needsKill then
+                row.achieveBtn:Show()
+                row.name:SetPoint("LEFT", 16, 0)
+            else
+                row.achieveBtn:Hide()
+                row.name:SetPoint("LEFT", 2, 0)
+            end
         end
     end
 
@@ -387,11 +417,19 @@ local function UpdateDisplay()
             local row = frame.allRareRows[i]
             local data = allUpcoming[DISPLAY_COUNT + i]
             if row and data then
-                row.status:SetText("|cff6b5b7f-|r")
                 row.name:SetTextColor(unpack(COLORS.upcomingRare))
                 row.time:SetTextColor(unpack(COLORS.timerUpcoming))
                 row.time:SetText("+" .. data.minutesUntil .. "m")
                 row.name:SetText(data.rare.name)
+
+                local needsKill = ns.achievementNeedsKill and ns.achievementNeedsKill[data.rare.name]
+                if needsKill then
+                    row.achieveBtn:Show()
+                    row.name:SetPoint("LEFT", 16, 0)
+                else
+                    row.achieveBtn:Hide()
+                    row.name:SetPoint("LEFT", 2, 0)
+                end
             end
         end
     end
@@ -432,16 +470,23 @@ local function Initialize()
     -- Start hidden - OnZoneChanged will show if in Twilight Highlands
     ns.UI.frame:Hide()
 
-    -- Update timer
+    -- Update timer (display every 1s, achievement poll every 30s as fallback)
     local elapsed = 0
+    local achieveElapsed = 0
     ns.UI.frame:SetScript("OnUpdate", function(self, delta)
         elapsed = elapsed + delta
+        achieveElapsed = achieveElapsed + delta
         if elapsed >= 1 then
             elapsed = 0
             UpdateDisplay()
         end
+        if achieveElapsed >= 30 then
+            achieveElapsed = 0
+            ns.Core:RefreshAchievementProgress()
+        end
     end)
 
+    ns.Core:RefreshAchievementProgress()
     UpdateDisplay()
     print("|cff9966ff[Twilight Ascension Rares]|r Loaded! Use |cffffd100/ta|r for commands.")
 end
@@ -451,11 +496,14 @@ local eventFrame = CreateFrame("Frame")
 eventFrame:RegisterEvent("ADDON_LOADED")
 eventFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+eventFrame:RegisterEvent("CRITERIA_UPDATE")
 
 eventFrame:SetScript("OnEvent", function(self, event, arg1)
     if event == "ADDON_LOADED" and arg1 == addonName then
         Initialize()
     elseif event == "ZONE_CHANGED_NEW_AREA" or event == "PLAYER_ENTERING_WORLD" then
         OnZoneChanged()
+    elseif event == "CRITERIA_UPDATE" then
+        ns.Core:RefreshAchievementProgress()
     end
 end)
