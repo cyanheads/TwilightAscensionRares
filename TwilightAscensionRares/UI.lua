@@ -161,7 +161,7 @@ local function CreateMainFrame()
         -- Rare name
         row.name = row:CreateFontString(nil, "OVERLAY", "SystemFont_Med1")
         row.name:SetPoint("LEFT", 16, 0)
-        row.name:SetWidth(138)
+        row.name:SetWidth(150)
         row.name:SetJustifyH("LEFT")
 
         -- Time indicator
@@ -284,7 +284,7 @@ local function CreateMainFrame()
 
         row.name = row:CreateFontString(nil, "OVERLAY", "SystemFont_Med1")
         row.name:SetPoint("LEFT", 16, 0)
-        row.name:SetWidth(138)
+        row.name:SetWidth(150)
         row.name:SetJustifyH("LEFT")
 
         row.time = row:CreateFontString(nil, "OVERLAY", "NumberFontNormalSmall")
@@ -398,14 +398,12 @@ local function UpdateDisplay()
             end
             row.name:SetText(data.rare.name)
 
-            -- Achievement indicator + name position
+            -- Achievement indicator
             local needsKill = ns.achievementNeedsKill and ns.achievementNeedsKill[data.rare.name]
             if needsKill then
                 row.achieveBtn:Show()
-                row.name:SetPoint("LEFT", 16, 0)
             else
                 row.achieveBtn:Hide()
-                row.name:SetPoint("LEFT", 2, 0)
             end
         end
     end
@@ -425,10 +423,8 @@ local function UpdateDisplay()
                 local needsKill = ns.achievementNeedsKill and ns.achievementNeedsKill[data.rare.name]
                 if needsKill then
                     row.achieveBtn:Show()
-                    row.name:SetPoint("LEFT", 16, 0)
                 else
                     row.achieveBtn:Hide()
-                    row.name:SetPoint("LEFT", 2, 0)
                 end
             end
         end

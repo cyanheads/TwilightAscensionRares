@@ -14,7 +14,6 @@ All notable changes to Twilight Ascension Rares will be documented in this file.
 ### Changed
 - Replaced static status indicators (> / -) with dynamic achievement indicators
 - Chat share message for current rare changed from "is up NOW" to "is spawning"
-- Slightly narrowed rare name column width to accommodate achievement indicator
 
 ## [1.1.3] - 2026-01-30
 
