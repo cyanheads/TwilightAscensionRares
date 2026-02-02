@@ -398,12 +398,14 @@ local function UpdateDisplay()
             end
             row.name:SetText(data.rare.name)
 
-            -- Achievement indicator
+            -- Achievement indicator + name position
             local needsKill = ns.achievementNeedsKill and ns.achievementNeedsKill[data.rare.name]
             if needsKill then
                 row.achieveBtn:Show()
+                row.name:SetPoint("LEFT", 16, 0)
             else
                 row.achieveBtn:Hide()
+                row.name:SetPoint("LEFT", 2, 0)
             end
         end
     end
@@ -423,8 +425,10 @@ local function UpdateDisplay()
                 local needsKill = ns.achievementNeedsKill and ns.achievementNeedsKill[data.rare.name]
                 if needsKill then
                     row.achieveBtn:Show()
+                    row.name:SetPoint("LEFT", 16, 0)
                 else
                     row.achieveBtn:Hide()
+                    row.name:SetPoint("LEFT", 2, 0)
                 end
             end
         end
