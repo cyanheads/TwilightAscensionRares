@@ -2,6 +2,12 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [1.2.1] - 2026-02-02
+
+### Changed
+- Updated addon icon to revised design (Rev2)
+- Added 400x400 icon asset for CurseForge
+
 ## [1.2.0] - 2026-02-02
 
 ### Added
