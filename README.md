@@ -26,6 +26,7 @@ The **Twilight's Blade** cult is summoning rares across the Twilight Highlands e
 
 | Feature | Description |
 |---------|-------------|
+| **Achievement Tracking** | Shows which rares you still need for Two Minutes to Midnight — click the indicator to open the achievement |
 | **Live Schedule** | Shows the current rare and next 3 upcoming spawns with countdown timers, plus an expandable view of all 18 rares |
 | **One-Click Waypoints** | TomTom integration (or manual `/way` output if not installed) |
 | **Raid/Chat Sharing** | Share any rare with timing info and clickable map pin to General or Raid chat |

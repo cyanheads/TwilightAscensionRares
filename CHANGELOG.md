@@ -2,6 +2,20 @@
 
 All notable changes to Twilight Ascension Rares will be documented in this file.
 
+## [1.2.0] - 2026-02-02
+
+### Added
+- Achievement progress tracking for Two Minutes to Midnight (ID 42300)
+- Clickable "!" indicator on rare rows that still need to be defeated
+- Clicking the indicator opens the achievement panel directly
+- Tooltip on achievement indicators explaining the rare has not yet been killed
+- Polls achievement progress every 30 seconds and on `CRITERIA_UPDATE` events
+
+### Changed
+- Replaced static status indicators (> / -) with dynamic achievement indicators
+- Chat share message for current rare changed from "is up NOW" to "is spawning"
+- Slightly narrowed rare name column width to accommodate achievement indicator
+
 ## [1.1.3] - 2026-01-30
 
 ### Changed

@@ -64,7 +64,6 @@ Example message:
 
 ## Future Enhancements (not yet implemented)
 
-- Achievement progress tracking (filter out already-killed rares)
 - Sound/visual alert before spawn
 - Minimap button
 - Localization support
